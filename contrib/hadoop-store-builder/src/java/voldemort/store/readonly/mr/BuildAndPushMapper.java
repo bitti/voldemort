@@ -1,16 +1,20 @@
 package voldemort.store.readonly.mr;
 
+import java.io.IOException;
+import java.security.MessageDigest;
+import java.util.List;
+
 import org.apache.hadoop.mapred.JobConf;
+
+import voldemort.VoldemortException;
 import voldemort.cluster.Node;
 import voldemort.routing.ConsistentRoutingStrategy;
+import voldemort.routing.RoutingStrategy;
+import voldemort.routing.RoutingStrategyFactory;
 import voldemort.serialization.SerializerDefinition;
 import voldemort.store.compress.CompressionStrategy;
 import voldemort.store.compress.CompressionStrategyFactory;
 import voldemort.utils.ByteUtils;
-
-import java.io.IOException;
-import java.security.MessageDigest;
-import java.util.List;
 
 /**
  * A class which encapsulates the serialization logic for data shuffled
@@ -43,8 +47,15 @@ public class BuildAndPushMapper extends AbstractStoreBuilderConfigurable {
         keyCompressor = new CompressionStrategyFactory().get(keySerializerDefinition.getCompression());
         valueCompressor = new CompressionStrategyFactory().get(valueSerializerDefinition.getCompression());
 
-        routingStrategy = new ConsistentRoutingStrategy(getCluster(),
-                getStoreDef().getReplicationFactor());
+        final RoutingStrategy routingStrategyCandidate =
+            new RoutingStrategyFactory().updateRoutingStrategy(getStoreDef(), getCluster());
+
+        if (routingStrategyCandidate instanceof ConsistentRoutingStrategy) {
+            routingStrategy = (ConsistentRoutingStrategy) routingStrategyCandidate;
+        } else {
+            throw new VoldemortException("RoutingStrategyType:" + getStoreDef().getRoutingStrategyType()
+                + " not handled by " + this.getClass());
+        }
     }
 
     /**
