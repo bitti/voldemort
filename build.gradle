@@ -190,7 +190,7 @@ clean {
 def depAvro = 'org.apache.avro:avro:1.7.7'
 def depAvroIpc = 'org.apache.avro:avro-ipc:1.7.7'
 def depAvroMapred = 'org.apache.avro:avro-mapred:1.7.7'
-def depProtoBuf = 'com.google.protobuf:protobuf-java:2.3.0'
+def depProtoBuf = 'com.google.protobuf:protobuf-java:2.5.0'
 def depJdom = 'org.jdom:jdom:1.1'
 def depAzkaban = 'com.linkedin.azkaban:azkaban:2.5.0'
 def depGuava = 'com.google.guava:guava:14.0.1'

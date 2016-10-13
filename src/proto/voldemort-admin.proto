@@ -1,5 +1,5 @@
-// Please use protoc version 2.3.0 to recompile:
-//   https://code.google.com/p/protobuf/downloads/detail?name=protobuf-2.3.0.tar.gz&can=2&q=
+// Please use protoc version 2.5.0 to recompile:
+//   https://github.com/google/protobuf/releases/download/v2.5.0/protobuf-2.5.0.tar.gz
 // Use commmand like the below to recompile:
 // $ protoc -I=src/proto --java_out=src/java src/proto/voldemort-admin.proto
 
@@ -73,7 +73,7 @@ message VoldemortFilter {
 
 message UpdateSlopEntriesRequest {
   required string store = 1;
-  required bytes key = 2; 
+  required bytes key = 2;
   required VectorClock version = 3;
   required RequestType request_type = 4;
   optional bytes value = 5;
@@ -108,7 +108,7 @@ message FetchPartitionEntriesResponse {
 message DeletePartitionEntriesRequest {
   required string store = 1;
   repeated int32 partition_ids = 2;
-  optional VoldemortFilter filter = 3; 
+  optional VoldemortFilter filter = 3;
   optional string initial_cluster = 4;
 }
 
@@ -254,7 +254,7 @@ message DeleteStoreResponse {
 message FetchStoreRequest {
   required string store_name = 1;
   required string store_dir = 2;
-  optional int64 push_version = 3; 
+  optional int64 push_version = 3;
 }
 
 message SwapStoreRequest {
@@ -263,13 +263,13 @@ message SwapStoreRequest {
 }
 
 message SwapStoreResponse {
-  optional Error error = 1; 
+  optional Error error = 1;
   optional string previous_store_dir = 2;
 }
 
 message RollbackStoreRequest {
   required string store_name = 1;
-  required int64 push_version = 2; 
+  required int64 push_version = 2;
 }
 
 message RollbackStoreResponse {
@@ -316,7 +316,7 @@ message GetROMaxVersionDirResponse {
   repeated ROStoreVersionDirMap ro_store_versions = 1;
   optional Error error = 2;
 }
- 
+
 message GetROCurrentVersionDirRequest {
   repeated string store_name = 1;
 }
@@ -379,7 +379,7 @@ message RebalanceStateChangeResponse {
 
 message DeleteStoreRebalanceStateRequest {
   required string store_name = 1;
-  required int32 node_id = 2; 
+  required int32 node_id = 2;
 }
 
 message DeleteStoreRebalanceStateResponse {
@@ -534,7 +534,7 @@ message VoldemortAdminRequest {
   optional FailedFetchStoreRequest failed_fetch_store = 24;
   optional GetROStorageFormatRequest get_ro_storage_format = 25;
   optional RebalanceStateChangeRequest rebalance_state_change = 26;
-  optional RepairJobRequest repair_job = 27;  
+  optional RepairJobRequest repair_job = 27;
   // optional InitiateRebalanceNodeOnDonorRequest initiate_rebalance_node_on_donor = 28;
   optional DeleteStoreRebalanceStateRequest delete_store_rebalance_state = 29;
   optional NativeBackupRequest native_backup = 30;
