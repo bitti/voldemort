@@ -1,12 +1,13 @@
 package voldemort.serialization.protobuf;
 
+import com.google.protobuf.GeneratedMessage;
+import com.google.protobuf.Message;
+
 import junit.framework.TestCase;
+
 import voldemort.serialization.DefaultSerializerFactory;
 import voldemort.serialization.Serializer;
 import voldemort.serialization.SerializerDefinition;
-
-import com.google.protobuf.GeneratedMessage;
-import com.google.protobuf.Message;
 
 public class ProtoBufSerializerTest extends TestCase {
 
@@ -46,6 +47,11 @@ public class ProtoBufSerializerTest extends TestCase {
         public MessageWithNoParseFrom(byte[] bytes) {
             super(bytes);
         }
+
+        @Override
+        protected Message.Builder newBuilderForType(BuilderParent parent) {
+            return null;
+        }
     }
 
     private static class InvalidMessageWithParseFrom {
@@ -65,6 +71,11 @@ public class ProtoBufSerializerTest extends TestCase {
         @SuppressWarnings("unused")
         public static MessageStub parseFrom(byte[] bytes) {
             return new MessageStub(bytes);
+        }
+
+        @Override
+        protected Message.Builder newBuilderForType(BuilderParent parent) {
+            return null;
         }
     }
 
