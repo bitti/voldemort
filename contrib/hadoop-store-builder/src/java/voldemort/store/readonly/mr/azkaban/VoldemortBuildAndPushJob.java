@@ -599,6 +599,11 @@ public class VoldemortBuildAndPushJob extends AbstractJob {
                 if (isAvroJob) {
                     // Verify the schema if the store exists or else add the new store
                     verifyOrAddAvroStore(url, isAvroVersioned);
+                } else if (!props.containsKey(BUILD_INPUT_PATH)) {
+                    // Take the schema from either build.force or push.force parameters, verify and add
+                    verifyOrAddStore(url,
+                        props.getString(BUILD_FORCE_SCHEMA_KEY, null),
+                        props.getString(BUILD_FORCE_SCHEMA_VALUE, null));
                 } else {
                     // Verify the schema if the store exists or else add the new store
                     verifyOrAddJsonStore(url);
