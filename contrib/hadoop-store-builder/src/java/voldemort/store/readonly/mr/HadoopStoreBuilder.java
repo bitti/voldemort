@@ -103,7 +103,7 @@ public class HadoopStoreBuilder extends AbstractHadoopJob {
 
     /**
      * Create the store builder
-     *  @param name Name of the job
+     * @param name Name of the job
      * @param props The Build and Push job's {@link Props}
      * @param baseJobConf A base configuration to start with
      * @param mapperClass The class to use as the mapper
@@ -111,20 +111,20 @@ public class HadoopStoreBuilder extends AbstractHadoopJob {
      * @param cluster The voldemort cluster for which the stores are being built
      * @param storeDef The store definition of the store
      * @param tempDir The temporary directory to use in hadoop for intermediate
-*        reducer output
+     *        reducer output
      * @param outputDir The directory in which to place the built stores
      * @param inputPath The path from which to read input data
      * @param checkSumType The checksum algorithm to use
      * @param saveKeys Boolean to signify if we want to save the key as well
      * @param reducerPerBucket Boolean to signify whether we want to have a
-*        single reducer for a bucket ( thereby resulting in all chunk files
-*        for a bucket being generated in a single reducer )
-     * @param chunkSizeBytes Size of each chunks (ignored if numChunksOverride is > 0)
+     *        single reducer for a bucket ( thereby resulting in all chunk files
+     *        for a bucket being generated in a single reducer )
+     * @param chunkSizeBytes Size of each chunks
      * @param isAvro whether the data format is avro
      * @param minNumberOfRecords if job generates fewer records than this, fail.
      * @param buildPrimaryReplicasOnly if true: build each partition only once,
-*                                 and store the files grouped by partition.
-*                                 if false: build all replicas redundantly,
+     *                                 and store the files grouped by partition.
+     *                                 if false: build all replicas redundantly,
      */
     public HadoopStoreBuilder(String name,
                               Props props,
