@@ -304,7 +304,7 @@ public class VoldemortBuildAndPushJob extends AbstractJob {
         // If the job sets Push HA to false, then it will be disabled, no matter what the server asks for.
         this.pushHighAvailability = props.getBoolean(VoldemortConfig.PUSH_HA_ENABLED, true);
 
-        //By default, BnP plugin is able to create new store during the push if sotres are not found at the cluster.
+        // By default, BnP plugin is able to create new store during the push if stores are not found at the cluster.
         this.enableStoreCreation = props.getBoolean(ENABLE_STORE_CREATION, true);
 
         // Initializing hooks

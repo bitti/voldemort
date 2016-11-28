@@ -21,7 +21,7 @@ public class RequestCounterTest {
 
     @Test
     public void testLargeValues() {
-        long val = 999999992342756424l;
+        long val = 999999992342756424L;
         requestCounter.addRequest(val);
     }
 

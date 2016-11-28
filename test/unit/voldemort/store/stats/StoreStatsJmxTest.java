@@ -88,7 +88,7 @@ public class StoreStatsJmxTest {
             StoreStatsJmx jmx = new StoreStatsJmx(stats);
 
             long[] valueSizes = new long[] { 100, 450, 200, 300 };
-            long sum = 0l;
+            long sum = 0L;
             long max = valueSizes[0];
             final long timeNS = 1 * NS_PER_MS;
 
@@ -124,7 +124,7 @@ public class StoreStatsJmxTest {
             StoreStatsJmx jmx = new StoreStatsJmx(stats);
 
             long[] keySizes = new long[] { 100, 450, 200, 300 };
-            long sum = 0l;
+            long sum = 0L;
             long max = keySizes[0];
             final long timeNS = 1 * NS_PER_MS;
 

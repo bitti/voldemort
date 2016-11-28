@@ -607,7 +607,6 @@ public class AdminClient implements Closeable {
          *        means all zones are fine
          * @param cluster The cluster metadata
          * @param storeDef The store to be restored
-         * @return
          */
         private void addDonorWithZonePreference(List<Integer> remainderPartitions,
                                                 List<Integer> originalPartitions,
@@ -2012,7 +2011,7 @@ public class AdminClient implements Closeable {
          * @param newDef
          * @return
          */
-        private boolean seriailizerMetadataEquals(SerializerDefinition oldDef,
+        private boolean serializerMetadataEquals(SerializerDefinition oldDef,
                                                  SerializerDefinition newDef) {
             if(!oldDef.getName().equals(newDef.getName())) {
                 return false;
@@ -2052,8 +2051,8 @@ public class AdminClient implements Closeable {
             SerializerDefinition remoteValueSerializerDef = remoteStoreDef.getValueSerializer();
             String newValSerDeName = newValueSerializerDef.getName();
 
-            if(seriailizerMetadataEquals(remoteKeySerializerDef,newKeySerializerDef)
-               && seriailizerMetadataEquals(remoteValueSerializerDef,newValueSerializerDef)) {
+            if(serializerMetadataEquals(remoteKeySerializerDef,newKeySerializerDef)
+               && serializerMetadataEquals(remoteValueSerializerDef,newValueSerializerDef)) {
                 Object remoteKeyDef, remoteValDef, localKeyDef, localValDef;
                 if (newValSerDeName.equals(DefaultSerializerFactory.AVRO_GENERIC_VERSIONED_TYPE_NAME) ||
                         newValSerDeName.equals(DefaultSerializerFactory.AVRO_GENERIC_TYPE_NAME)) {
@@ -2341,7 +2340,7 @@ public class AdminClient implements Closeable {
          *
          * @param storeName name of the store to delete
          * @throws VoldemortException of the first node which failed (note, there might be more)
-         * @see {@link #deleteStore(String, java.util.List)} for more visibility into specific failures.
+         * @see #deleteStore(String, java.util.List) deleteStore - for more visibility into specific failures.
          */
         public void deleteStore(String storeName) {
             List<Integer> nodeIds = Lists.newArrayList(currentCluster.getNodeIds());
@@ -2371,7 +2370,7 @@ public class AdminClient implements Closeable {
          *
          * @param storeName name of the store to delete
          * @param nodeIds list of node IDs on which we want to delete the store
-         * @return {@link java.util.Map<Integer, VoldemortException>} mapping each node ID to the
+         * @return {@link java.util.Map java.util.Map&lt;Integer, VoldemortException&gt;} mapping each node ID to the
          *         exception it threw. If the map is empty, then the operation succeeded on all nodes.
          */
         public Map<Integer, VoldemortException> deleteStore(String storeName, List<Integer> nodeIds) {

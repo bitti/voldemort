@@ -18,13 +18,13 @@ public class StatsTest {
     @Test
     public void emptyResponseCountsAccumulateCorrectly() {
         RequestCounter rc = getTestRequestCounter("emptyResponseCountsAccumulateCorrectly");
-        assertEquals(0l, rc.getNumEmptyResponses());
+        assertEquals(0L, rc.getNumEmptyResponses());
         rc.addRequest(40, 1, 0, 0, 0);
-        assertEquals(1l, rc.getNumEmptyResponses());
+        assertEquals(1L, rc.getNumEmptyResponses());
         rc.addRequest(40, 0, 0, 0, 0);
-        assertEquals(1l, rc.getNumEmptyResponses());
+        assertEquals(1L, rc.getNumEmptyResponses());
         rc.addRequest(40, 1, 0, 0, 0);
-        assertEquals(2l, rc.getNumEmptyResponses());
+        assertEquals(2L, rc.getNumEmptyResponses());
     }
 
     @Test
@@ -66,12 +66,12 @@ public class StatsTest {
         RequestCounter rc = getTestRequestCounter("maxValueSizeIsAccurate");
 
         assertEquals(0, rc.getMaxValueSizeInBytes());
-        for(long requestSize: new long[] { 42l, 923423l, 334l, 99 }) {
+        for(long requestSize: new long[] {42L, 923423L, 334L, 99 }) {
             rc.addRequest(1, 1, requestSize, 0, 0);
         }
-        assertEquals(923423l, rc.getMaxValueSizeInBytes());
-        rc.addRequest(5, 0, 1414232l, 0, 0);
-        assertEquals(1414232l, rc.getMaxValueSizeInBytes());
+        assertEquals(923423L, rc.getMaxValueSizeInBytes());
+        rc.addRequest(5, 0, 1414232L, 0, 0);
+        assertEquals(1414232L, rc.getMaxValueSizeInBytes());
     }
 
     @Test
@@ -79,12 +79,12 @@ public class StatsTest {
         RequestCounter rc = getTestRequestCounter("maxKeySizeIsAccurate");
 
         assertEquals(0, rc.getMaxKeySizeInBytes());
-        for(long requestKeySize: new long[] { 42l, 923423l, 334l, 99 }) {
+        for(long requestKeySize: new long[] {42L, 923423L, 334L, 99 }) {
             rc.addRequest(1, 1, 0, requestKeySize, 0);
         }
-        assertEquals(923423l, rc.getMaxKeySizeInBytes());
-        rc.addRequest(5, 0, 0, 1414232l, 0);
-        assertEquals(1414232l, rc.getMaxKeySizeInBytes());
+        assertEquals(923423L, rc.getMaxKeySizeInBytes());
+        rc.addRequest(5, 0, 0, 1414232L, 0);
+        assertEquals(1414232L, rc.getMaxKeySizeInBytes());
     }
 
     @Test

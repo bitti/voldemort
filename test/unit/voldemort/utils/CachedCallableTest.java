@@ -15,7 +15,7 @@ import static org.mockito.Mockito.*;
 public class CachedCallableTest {
 
     private static final long CACHE_TTL_MS = 1000;
-    private static final long CALL_RESULT = 0xdeaddeadl;
+    private static final long CALL_RESULT = 0xdeaddeadL;
 
     @Mock
     private Callable<Long> inner;
@@ -51,8 +51,8 @@ public class CachedCallableTest {
         cachedCallable.call();
         verify(inner, times(1)).call();
         mockTime.addMilliseconds(1001);
-        when(inner.call()).thenReturn(CALL_RESULT + 1l);
-        assertEquals((long) cachedCallable.call(), CALL_RESULT + 1l);
+        when(inner.call()).thenReturn(CALL_RESULT + 1L);
+        assertEquals((long) cachedCallable.call(), CALL_RESULT + 1L);
         verify(inner, times(2)).call();
     }
 }
